@@ -6,3 +6,6 @@
 - Esercizio_3 : Create and use CommonJS modules
     Create a script that uses module.exports to export a function.
     Create another script that uses require() to import the function and then calls it.
+- Esercizio_4 : Create and use ECMAScript modules
+    Create a script that uses export default to export a function.
+    Create another script that uses import to import the function and then calls it.
