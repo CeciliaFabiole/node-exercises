@@ -1,0 +1,19 @@
+{
+  "name": "exercises",
+  "version": "1.0.0",
+  "description": "node exercises",
+  "main": "exportedFunction.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CeciliaFabiole/node-exercises.git"
+  },
+  "author": "cecilia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CeciliaFabiole/node-exercises/issues"
+  },
+  "homepage": "https://github.com/CeciliaFabiole/node-exercises#readme"
+}
