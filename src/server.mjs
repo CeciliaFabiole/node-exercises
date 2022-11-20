@@ -1,7 +1,7 @@
 import { createServer } from "node:http";
 import outputMessage from "./outputMessage.mjs";
 
-const message = outputMessage('Hey there!')
+
 const server = createServer((request, response) => {
   console.log("request received");
 
@@ -9,6 +9,7 @@ const server = createServer((request, response) => {
 
   response.setHeader("Content-Type", "text/html");
 
+  const message = outputMessage('Hey there!')
   response.end(
     `<html><body><h1>${message}</h1></body></html>`
   );

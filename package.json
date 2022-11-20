@@ -4,7 +4,7 @@
   "description": "node exercises",
   "main": "exportedFunction.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/CeciliaFabiole/node-exercises#readme",
   "dependencies": {
-    "figlet": "^1.5.2"
+    "figlet": "^1.5.2",
+    "jest": "^29.3.1",
+    "supertest": "^6.3.1"
   }
 }
