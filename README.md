@@ -17,3 +17,7 @@
     Change the location in the response to "Mars". Run the server and make a request to it with curl using the --verbose flag. What is the value of the Content-Length response header?
 - Esercizio_7 : Command-line art
     Create a new Node.js project and install the figlet package (https://www.npmjs.com/package/figlet). Write a script that uses the function from this package to output some text based art (the figlet package README has a 'Quick Start' section). Run the script with Node.js.
+- Esercizio_8 : Inspect an HTTP response with curl
+    Make an HTTP request with curl that shows the response headers for this URL: https://jsonplaceholder.typicode.com/posts/1/comments
+    What is the value of the content-type response header? 
+    content-type: application/json; charset=utf-8
