@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/CeciliaFabiole/node-exercises/issues"
   },
-  "homepage": "https://github.com/CeciliaFabiole/node-exercises#readme"
+  "homepage": "https://github.com/CeciliaFabiole/node-exercises#readme",
+  "dependencies": {
+    "figlet": "^1.5.2"
+  }
 }

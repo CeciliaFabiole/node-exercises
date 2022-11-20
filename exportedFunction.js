@@ -1,4 +1,4 @@
 const message = (text)=> {
-    return `The message is : ${text}`
+    return `${text}`
 }
 module.exports = message
