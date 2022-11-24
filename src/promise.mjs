@@ -13,15 +13,15 @@ export function luckyDraw(player) {
 let lucky = luckyDraw('Joe')
 lucky
 .then((player)=>{
-    console.log(`${player} won a prize in the draw!`)
+    console.log(`${player}`)
     return luckyDraw('Caroline')
 })
 .then((player)=>{
-    console.log(`${player} won a prize in the draw!`)
+    console.log(`${player}`)
     return luckyDraw('Sabrina')
 })
 .then((player)=>{
-    console.log(`${player} won a prize in the draw!`)
+    console.log(`${player}`)
 })
 .catch((err)=>{
     console.log('E stato provocato un errore', err)
