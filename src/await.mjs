@@ -15,11 +15,11 @@ function luckyDraw(player) {
 async function getResults() {
     try {
         const tina = await luckyDraw('Tina')
-        console.log(`${tina} won a prize in the draw!`)
+        console.log(`${tina}`)
         const jorge = await luckyDraw('Jorge')
-        console.log(`${jorge} won a prize in the draw!`)
+        console.log(`${jorge}`)
         const julien = await luckyDraw('Julien')
-        console.log(`${julien} won a prize in the draw!`)
+        console.log(`${julien}`)
     } catch(error) {
         console.error(error)
     }
