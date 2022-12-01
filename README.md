@@ -20,7 +20,7 @@
 - Esercizio_8 : Inspect an HTTP response with curl
     Make an HTTP request with curl that shows the response headers for this URL: https://jsonplaceholder.typicode.com/posts/1/comments
     What is the value of the content-type response header? 
-    content-type: application/json; charset=utf-8
+    RISPOSTA : content-type: application/json; charset=utf-8
 - Esercizio_9 : A test-driven HTTP response
     Our integration test in app.test.js expects a JSON response.
     Change the test to expect an HTML response header: Content-Type: text/html
@@ -65,3 +65,11 @@
             });
         });
     }
+- Esercizio_13 : Create your own HTTP server
+    Use the techniques you've learnt so far to create your own HTTP server with Express. Your server should:
+    _ Automatically recompile and restart when you make changes
+    _ Have a GET route that sends a JSON response
+    _ Have an integration test for the GET route
+    _ Use an environment variable to configure the server port
+
+    "main": "exportedFunction.js",

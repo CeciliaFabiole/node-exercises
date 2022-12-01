@@ -1,5 +1,5 @@
 let figlet = require('figlet');
-const greet = require('./exportedFunction.js')
+const greet = require('../Esercizio3/exportedFunction.js')
 const message = greet('Hello guys !')
 
 figlet(`${message}`, function(err, data) {
