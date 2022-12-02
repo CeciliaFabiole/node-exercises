@@ -22,9 +22,10 @@ app.get("/planets", (request, response)=>{
     response.json(planet)
 })
 
-const port = process.env.PORT
+const port = process.env.PORT;
 app.listen(port, () => {
-    console.log(`[server]: Server is running at http://localhost:${port}`)
+    console.log(`[server]: Server is running at http://localhost:${port}`);
 })
+
 export default app;
 
