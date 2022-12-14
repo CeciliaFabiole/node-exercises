@@ -14,17 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const app_1 = __importDefault(require("./app"));
-const arrayPlanet = [
-    { name: "Marte" },
-    { name: "Venere" },
-    { name: "Mercurio" }
-];
 const request = (0, supertest_1.default)(app_1.default);
 test("GET /planets", () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield request
         .get("/planets")
         .expect(200)
         .expect("Content-Type", /application\/json/);
-    expect(response.body.toEqual(arrayPlanet));
+    expect(response.body).toEqual([
+        { name: "Marte" },
+        { name: "Venere" },
+        { name: "Mercurio" },
+    ]);
 }));
 //# sourceMappingURL=server.test.js.map
