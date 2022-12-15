@@ -1,10 +1,11 @@
 import express from "express";
 import "express-async-errors";
 import "dotenv/config"
-import {PrismaClient} from "@prisma/client"
+import {validate, planetSchema, planetData, validationErrorMiddleware} from "./lib/validation"
+import prisma from "./lib/prisma/client";
 
-const app = express()
-const prisma = new PrismaClient();
+const app = express();
+app.use(express.json());
 
 app.get("/", (request, response) =>{
     response.send("This is the Space Facts API")
@@ -28,6 +29,21 @@ app.get("/planets", async (request, response)=>{
     const planets = await prisma.planet.findMany()
     response.json(planets)
 })
+
+// app.post("/planets", validate({body:planetSchema}), async(request, response) => {
+//     const planetData: planetData = request.body
+//     const planet = await prisma.planet.create({
+//         data : planetData
+//     })
+//     response.status(201).json(planet)
+// })
+// app.use(validationErrorMiddleware)
+app.post("/planets", validate({body: planetSchema}),async(request, response) => {
+    const planet: planetData = request.body;
+    response.status(201).json(planet)
+})
+
+app.use(validationErrorMiddleware)
 
 const port = process.env.PORT;
 app.listen(port, () => {

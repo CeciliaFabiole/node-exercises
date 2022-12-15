@@ -123,3 +123,5 @@
 - Esercizio_16 : Retrieve all resources
     In this exercise you'll build on what you created in 'Unit 12, Exercise 1: Create a database and Prisma model'.
     Add a route to your API that retrieves all resources.
+- Esercizio_17 : Create a resource
+    Add a route to your API that creates a resource. The route should validate the request body data.

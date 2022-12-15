@@ -15,9 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("express-async-errors");
 require("dotenv/config");
-const client_1 = require("@prisma/client");
+const validation_1 = require("./lib/validation");
+const client_1 = __importDefault(require("./lib/prisma/client"));
 const app = (0, express_1.default)();
-const prisma = new client_1.PrismaClient();
+app.use(express_1.default.json());
 app.get("/", (request, response) => {
     response.send("This is the Space Facts API");
 });
@@ -34,9 +35,22 @@ app.get("/", (request, response) => {
 //     response.json(planet)
 // })
 app.get("/planets", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    const planets = yield prisma.planet.findMany();
+    const planets = yield client_1.default.planet.findMany();
     response.json(planets);
 }));
+// app.post("/planets", validate({body:planetSchema}), async(request, response) => {
+//     const planetData: planetData = request.body
+//     const planet = await prisma.planet.create({
+//         data : planetData
+//     })
+//     response.status(201).json(planet)
+// })
+// app.use(validationErrorMiddleware)
+app.post("/planets", (0, validation_1.validate)({ body: validation_1.planetSchema }), (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const planet = request.body;
+    response.status(201).json(planet);
+}));
+app.use(validation_1.validationErrorMiddleware);
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
