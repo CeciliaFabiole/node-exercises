@@ -38,19 +38,19 @@ app.get("/planets", (request, response) => __awaiter(void 0, void 0, void 0, fun
     const planets = yield client_1.default.planet.findMany();
     response.json(planets);
 }));
-// app.post("/planets", validate({body:planetSchema}), async(request, response) => {
-//     const planetData: planetData = request.body
-//     const planet = await prisma.planet.create({
-//         data : planetData
-//     })
-//     response.status(201).json(planet)
-// })
-// app.use(validationErrorMiddleware)
 app.post("/planets", (0, validation_1.validate)({ body: validation_1.planetSchema }), (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    const planet = request.body;
+    const planetData = request.body;
+    const planet = yield client_1.default.planet.create({
+        data: planetData
+    });
     response.status(201).json(planet);
 }));
 app.use(validation_1.validationErrorMiddleware);
+// app.post("/planets", validate({body: planetSchema}),async(request, response) => {
+//     const planet: planetData = request.body;
+//     response.status(201).json(planet)
+// })
+// app.use(validationErrorMiddleware)
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);

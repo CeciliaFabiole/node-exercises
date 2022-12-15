@@ -30,20 +30,20 @@ app.get("/planets", async (request, response)=>{
     response.json(planets)
 })
 
-// app.post("/planets", validate({body:planetSchema}), async(request, response) => {
-//     const planetData: planetData = request.body
-//     const planet = await prisma.planet.create({
-//         data : planetData
-//     })
-//     response.status(201).json(planet)
-// })
-// app.use(validationErrorMiddleware)
-app.post("/planets", validate({body: planetSchema}),async(request, response) => {
-    const planet: planetData = request.body;
+app.post("/planets", validate({body:planetSchema}), async(request, response) => {
+    const planetData: planetData = request.body
+    const planet = await prisma.planet.create({
+        data : planetData
+    })
     response.status(201).json(planet)
 })
-
 app.use(validationErrorMiddleware)
+// app.post("/planets", validate({body: planetSchema}),async(request, response) => {
+//     const planet: planetData = request.body;
+//     response.status(201).json(planet)
+// })
+
+// app.use(validationErrorMiddleware)
 
 const port = process.env.PORT;
 app.listen(port, () => {
