@@ -17,8 +17,10 @@ require("express-async-errors");
 require("dotenv/config");
 const validation_1 = require("./lib/validation");
 const client_1 = __importDefault(require("./lib/prisma/client"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 app.get("/", (request, response) => {
     response.send("This is the Space Facts API");
 });

@@ -127,3 +127,5 @@
     Add a route to your API that creates a resource. The route should validate the request body data.
 - Esercizio_18 : Retrieve, update and delete a resource
     Add routes to your API for retrieving, updating and deleting a resource.
+- Esercizio_19 : Add support for CORS to your API
+    Configure your API to enable CORS for requests from the origin http://localhost:8080.

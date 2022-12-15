@@ -3,10 +3,11 @@ import "express-async-errors";
 import "dotenv/config"
 import {validate, planetSchema, planetData, validationErrorMiddleware} from "./lib/validation"
 import prisma from "./lib/prisma/client";
-import { nextTick } from "process";
+import cors from "cors"
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (request, response) =>{
     response.send("This is the Space Facts API")
