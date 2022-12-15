@@ -38,6 +38,17 @@ app.get("/planets", (request, response) => __awaiter(void 0, void 0, void 0, fun
     const planets = yield client_1.default.planet.findMany();
     response.json(planets);
 }));
+app.get("/planets/:id", (request, response, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const planetId = Number(request.params.id);
+    const planet = yield client_1.default.planet.findUnique({
+        where: { id: planetId }
+    });
+    if (!planet) {
+        response.status(404);
+        return next(`Cannot GET /planets/${planetId}`);
+    }
+    response.json(planet);
+}));
 app.post("/planets", (0, validation_1.validate)({ body: validation_1.planetSchema }), (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const planetData = request.body;
     const planet = yield client_1.default.planet.create({
@@ -51,6 +62,36 @@ app.use(validation_1.validationErrorMiddleware);
 //     response.status(201).json(planet)
 // })
 // app.use(validationErrorMiddleware)
+app.put("/planets/:id", (0, validation_1.validate)({ body: validation_1.planetSchema }), (request, response, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const planetID = Number(request.params.id);
+    const planetData = request.body;
+    try {
+        const planet = yield client_1.default.planet.update({
+            where: { id: planetID },
+            data: planetData
+        });
+        response.status(200).json(planet);
+    }
+    catch (error) {
+        response.status(404);
+        next(`Cannot PUT /planets/${planetID}`);
+    }
+}));
+app.use(validation_1.validationErrorMiddleware);
+app.delete("/planets/:id", (request, response, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const planetID = Number(request.params.id);
+    try {
+        yield client_1.default.planet.delete({
+            where: { id: planetID },
+        });
+        response.status(204).end();
+    }
+    catch (error) {
+        response.status(404);
+        next(`Cannot DELETE /planets/${planetID}`);
+    }
+}));
+app.use(validation_1.validationErrorMiddleware);
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
