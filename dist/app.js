@@ -18,6 +18,8 @@ require("dotenv/config");
 const validation_1 = require("./lib/validation");
 const client_1 = __importDefault(require("./lib/prisma/client"));
 const cors_1 = __importDefault(require("cors"));
+const multer_1 = require("./lib/middleware/multer");
+const upload = (0, multer_1.initMulterMiddleware)();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
@@ -58,7 +60,6 @@ app.post("/planets", (0, validation_1.validate)({ body: validation_1.planetSchem
     });
     response.status(201).json(planet);
 }));
-app.use(validation_1.validationErrorMiddleware);
 // app.post("/planets", validate({body: planetSchema}),async(request, response) => {
 //     const planet: planetData = request.body;
 //     response.status(201).json(planet)
@@ -79,7 +80,6 @@ app.put("/planets/:id", (0, validation_1.validate)({ body: validation_1.planetSc
         next(`Cannot PUT /planets/${planetID}`);
     }
 }));
-app.use(validation_1.validationErrorMiddleware);
 app.delete("/planets/:id", (request, response, next) => __awaiter(void 0, void 0, void 0, function* () {
     const planetID = Number(request.params.id);
     try {
@@ -93,6 +93,27 @@ app.delete("/planets/:id", (request, response, next) => __awaiter(void 0, void 0
         next(`Cannot DELETE /planets/${planetID}`);
     }
 }));
+app.post("/planets/:id/photo", upload.single("photo"), (request, response, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("request.file", request.file);
+    if (!request.file) {
+        response.status(400);
+        return next("No photo file uploaded");
+    }
+    const planetID = Number(request.params.id);
+    const photoFilename = request.file.filename;
+    try {
+        yield client_1.default.planet.update({
+            where: { id: planetID },
+            data: { photoFilename },
+        });
+        response.status(201).json({ photoFilename });
+    }
+    catch (error) {
+        response.status(404);
+        next(`Cannot POST /planets/${planetID}/photo`);
+    }
+}));
+app.use("/planets/photos", express_1.default.static("uploads"));
 app.use(validation_1.validationErrorMiddleware);
 const port = process.env.PORT;
 app.listen(port, () => {

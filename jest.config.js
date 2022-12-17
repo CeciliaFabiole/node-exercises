@@ -3,5 +3,6 @@ module.exports = {
     verbose: true,
     preset: "ts-jest",
     clearMocks: true,
-    setupFilesAfterEnv: ["./src/Esercizio13/lib/prisma/client.mock.ts"]
+    setupFilesAfterEnv: ["./src/Esercizio13/lib/prisma/client.mock.ts",
+                        "./src/Esercizio13/lib/middleware/multer.mock.ts"]
 }
