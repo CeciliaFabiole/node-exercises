@@ -20,7 +20,7 @@ const storage = multer_1.default.diskStorage({
         return callback(null, (0, exports.generatePhotoFilename)(file.mimetype));
     }
 });
-// const MAX_SIZE_IN_MEGABYTES = 1000 * 1024 + 1024;
+const MAX_SIZE_IN_MEGABYTES = 1000 * 1024 + 1024;
 const VALID_NAME_TYPES = ["image/png", "image/jpeg"];
 const fileFilter = (request, file, callback) => {
     if (VALID_NAME_TYPES.includes(file.mimetype)) {
@@ -32,9 +32,9 @@ const fileFilter = (request, file, callback) => {
 };
 exports.multerOptions = {
     fileFilter,
-    // limits: {
-    //     fileSize: MAX_SIZE_IN_MEGABYTES,
-    // }
+    limits: {
+        fileSize: MAX_SIZE_IN_MEGABYTES,
+    }
 };
 const initMulterMiddleware = () => {
     return (0, multer_1.default)(Object.assign({ storage }, exports.multerOptions));

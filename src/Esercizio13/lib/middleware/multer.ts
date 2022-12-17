@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     }
 })
 
-// const MAX_SIZE_IN_MEGABYTES = 1000 * 1024 + 1024;
+const MAX_SIZE_IN_MEGABYTES = 1000 * 1024 + 1024;
 const VALID_NAME_TYPES = ["image/png", "image/jpeg"]
 
 const fileFilter : multer.Options["fileFilter"]= (request, file, callback) => {
@@ -29,9 +29,9 @@ const fileFilter : multer.Options["fileFilter"]= (request, file, callback) => {
 
 export const multerOptions = {
     fileFilter,
-    // limits: {
-    //     fileSize: MAX_SIZE_IN_MEGABYTES,
-    // }
+    limits: {
+        fileSize: MAX_SIZE_IN_MEGABYTES,
+    }
 }
 export const initMulterMiddleware = () => {
     return multer({storage, ...multerOptions})
